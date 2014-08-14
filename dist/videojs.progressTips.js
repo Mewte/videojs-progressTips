@@ -9,7 +9,7 @@
     init = function() {
       var player;
       if (this.techName !== "Html5") {
-        return;
+        //return; If we return here, then this plugin won't work for other techs..
       }
       player = this;
       $(".vjs-progress-control").after($("      <div id='vjs-tip'>      <div id='vjs-tip-arrow'></div>      <div id='vjs-tip-inner'></div>      </div>    "));
@@ -35,7 +35,7 @@
         $("#vjs-tip").css("visibility", "hidden");
       });
     };
-    this.on("loadedmetadata", init);
+    this.one("playing", init); //not all techs properly fire loadmetadata, instead, we launch once on the playing event
   });
 
 }).call(this);
